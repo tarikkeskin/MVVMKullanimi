@@ -1,53 +1,51 @@
 package com.example.mvvmkullanimi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.mvvmkullanimi.databinding.ActivityMainBinding;
+
 public class MainActivity extends AppCompatActivity {
-    private TextView textViewSonuc;
-    private EditText editTextSayi1,editTextSayi2;
-    private Button buttonToplama,buttonCarpma;
+
+    private ActivityMainBinding tasarim;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        tasarim = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        tasarim.setMainActivityNesnesi(this); //give permission to the object
 
-        textViewSonuc = findViewById(R.id.textViewSonuc);
-        editTextSayi1 = findViewById(R.id.editTextSayi1);
-        editTextSayi2 = findViewById(R.id.editTextSayi2);
-        buttonCarpma = findViewById(R.id.buttonCarpma);
-        buttonToplama = findViewById(R.id.buttonToplama);
 
-        textViewSonuc.setText("0");
 
-        buttonToplama.setOnClickListener(view -> {
-            String alinanSayi1 = editTextSayi1.getText().toString();
-            String alinanSayi2 = editTextSayi2.getText().toString();
+        tasarim.textViewSonuc.setText("0");
 
-            int sayi1 = Integer.parseInt(alinanSayi1);
-            int sayi2 = Integer.parseInt(alinanSayi2);
+    }
 
-            int toplam = sayi1 + sayi2;
+    public void buttonToplamaTikla(){
+        String alinanSayi1 = tasarim.editTextSayi1.getText().toString();
+        String alinanSayi2 = tasarim.editTextSayi2.getText().toString();
 
-            textViewSonuc.setText(String.valueOf(toplam));
-        });
+        int sayi1 = Integer.parseInt(alinanSayi1);
+        int sayi2 = Integer.parseInt(alinanSayi2);
 
-        buttonCarpma.setOnClickListener(view -> {
-            String alinanSayi1 = editTextSayi1.getText().toString();
-            String alinanSayi2 = editTextSayi2.getText().toString();
+        int toplam = sayi1 + sayi2;
 
-            int sayi1 = Integer.parseInt(alinanSayi1);
-            int sayi2 = Integer.parseInt(alinanSayi2);
+        tasarim.textViewSonuc.setText(String.valueOf(toplam));
+    }
 
-            int carpma = sayi1 * sayi2;
+    public void buttonCarpmaTikla(){
+        String alinanSayi1 = tasarim.editTextSayi1.getText().toString();
+        String alinanSayi2 = tasarim.editTextSayi2.getText().toString();
 
-            textViewSonuc.setText(String.valueOf(carpma));
+        int sayi1 = Integer.parseInt(alinanSayi1);
+        int sayi2 = Integer.parseInt(alinanSayi2);
 
-        });
+        int carpma = sayi1 * sayi2;
 
+        tasarim.textViewSonuc.setText(String.valueOf(carpma));
     }
 }
