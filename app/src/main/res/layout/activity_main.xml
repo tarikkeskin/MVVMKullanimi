@@ -10,6 +10,7 @@
         <variable
             name="hesaplamaSonucu"
             type="String" />
+        <import type="android.view.View"/>
 
     </data>
 
@@ -25,6 +26,8 @@
             android:layout_marginTop="32dp"
             android:text="@{hesaplamaSonucu}"
             android:textSize="24sp"
+            android:textColor="@{Integer.parseInt(hesaplamaSonucu) > 10 ?  @color/purple_500 : @color/teal_700}"
+            android:visibility="@{Integer.parseInt(hesaplamaSonucu) > 0 ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
