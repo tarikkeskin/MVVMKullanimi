@@ -7,6 +7,9 @@
         <variable
             name="mainActivityNesnesi"
             type="com.example.mvvmkullanimi.MainActivity" />
+        <variable
+            name="hesaplamaSonucu"
+            type="String" />
 
     </data>
 
@@ -20,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="TextView"
+            android:text="@{hesaplamaSonucu}"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -60,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="toplama"
-            android:onClick="@{() -> mainActivityNesnesi.buttonToplamaTikla()}"
+            android:onClick="@{() -> mainActivityNesnesi.buttonToplamaTikla(editTextSayi1.getText().toString,editTextSayi2.getText().toString())}"
             app:layout_constraintEnd_toStartOf="@+id/buttonCarpma"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="Çarpma"
-            android:onClick="@{() -> mainActivityNesnesi.buttonCarpmaTikla()}"
+            android:onClick="@{() -> mainActivityNesnesi.buttonCarpmaTikla(editTextSayi1.getText().toString,editTextSayi2.getText().toString())}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/buttonToplama"
