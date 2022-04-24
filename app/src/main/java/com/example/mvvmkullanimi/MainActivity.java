@@ -2,6 +2,7 @@ package com.example.mvvmkullanimi;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -25,17 +26,22 @@ public class MainActivity extends AppCompatActivity {
 
 
         tasarim.setMainActivityNesnesi(this); //give permission to the object
-        tasarim.setHesaplamaSonucu(viewModel.getSonuc());
 
+        //listens live data
+        viewModel.getSonuc().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                tasarim.setHesaplamaSonucu(s);
+            }
+        });
     }
 
     public void buttonToplamaTikla(String alinanSayi1,String alinanSayi2){
-        viewModel.toplamaYap(alinanSayi1,alinanSayi2);
-        tasarim.setHesaplamaSonucu(viewModel.getSonuc());
+        viewModel.toplamaYap(alinanSayi1,alinanSayi2); //triggers live data
     }
 
     public void buttonCarpmaTikla(String alinanSayi1,String alinanSayi2){
-        viewModel.carpmaYap(alinanSayi1,alinanSayi2);
-        tasarim.setHesaplamaSonucu(viewModel.getSonuc());
+        viewModel.carpmaYap(alinanSayi1,alinanSayi2); //triggers live data
     }
+
 }
